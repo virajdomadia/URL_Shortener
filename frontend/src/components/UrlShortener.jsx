@@ -20,9 +20,12 @@ const UrlShortener = () => {
     setShortUrl("");
 
     try {
-      const res = await axios.post("http://localhost:5000/api/shorten", {
-        originalUrl,
-      });
+      const res = await axios.post(
+        "https://url-shortener-backend-yjha.onrender.com/api/shorten",
+        {
+          originalUrl,
+        }
+      );
       setShortUrl(res.data.shortUrl);
       fetchAllAnalytics(); // Refresh analytics after new URL is created
     } catch (err) {
@@ -33,7 +36,9 @@ const UrlShortener = () => {
 
   // Copy short URL to clipboard
   const handleCopy = () => {
-    navigator.clipboard.writeText(`http://localhost:5000/${shortUrl}`);
+    navigator.clipboard.writeText(
+      `https://url-shortener-backend-yjha.onrender.com/${shortUrl}`
+    );
     alert("Short URL copied to clipboard!");
   };
 
@@ -41,7 +46,7 @@ const UrlShortener = () => {
   const fetchAllAnalytics = async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/shorten/analytics"
+        "https://url-shortener-backend-yjha.onrender.com/api/shorten/analytics"
       );
       setAllUrls(res.data);
     } catch (error) {
@@ -54,7 +59,7 @@ const UrlShortener = () => {
   const fetchAnalytics = async (shortUrl) => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/shorten/analytics/${shortUrl}`
+        `https://url-shortener-backend-yjha.onrender.com/api/shorten/analytics/${shortUrl}`
       );
       setAnalytics(res.data);
     } catch (error) {
@@ -90,12 +95,12 @@ const UrlShortener = () => {
         <div className="mt-4 p-4 bg-gray-100 rounded-md text-center">
           <p className="mb-2 font-semibold">Short URL:</p>
           <a
-            href={`http://localhost:5000/${shortUrl}`}
+            href={`https://url-shortener-backend-yjha.onrender.com/${shortUrl}`}
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-600 underline"
           >
-            {`http://localhost:5000/${shortUrl}`}
+            {`https://url-shortener-backend-yjha.onrender.com/${shortUrl}`}
           </a>
           <div className="flex justify-center gap-4 mt-3">
             <button
@@ -150,7 +155,7 @@ const UrlShortener = () => {
                   <td className="border p-2">{url.originalUrl}</td>
                   <td className="border p-2">
                     <a
-                      href={`http://localhost:5000/${url.shortUrl}`}
+                      href={`https://url-shortener-backend-yjha.onrender.com/${url.shortUrl}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-blue-600 underline"
